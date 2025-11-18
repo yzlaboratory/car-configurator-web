@@ -16,7 +16,32 @@ env:
   # Your Role ARN from Terraform Output
 
 jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Lint Code
+        run: npm run lint
+
+      - name: Check Formatting
+        run: npm run format:check
+
+      - name: Run Unit Tests
+        run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadless
+
   build-and-deploy:
+    needs: validate
     runs-on: ubuntu-latest
 
     steps:
@@ -49,3 +74,9 @@ jobs:
           aws s3 sync ./dist/car-configurator s3://${{ env.S3_BUCKET_NAME }} \
             --delete \
             --cache-control "max-age=31536000,public"
+
+      - name: Invalidate CloudFront
+        run: |
+          aws cloudfront create-invalidation \
+          --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
+          --paths "/*"
