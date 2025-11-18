@@ -12,7 +12,7 @@ permissions:
 
 env:
   AWS_REGION: 'eu-central-1'
-  S3_BUCKET_NAME: 'car-configurator-frontend-staging-bucket'
+  S3_BUCKET_NAME: 'car-configurator-staging-frontend-bucket'
   # Your Role ARN from Terraform Output
 
 jobs:
