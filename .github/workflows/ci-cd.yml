@@ -1,0 +1,51 @@
+name: Deploy Angular to S3
+
+on:
+  push:
+    branches:
+      - main # Trigger on push to main
+
+# These permissions are needed for OIDC authentication
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  AWS_REGION: 'eu-central-1'
+  S3_BUCKET_NAME: 'car-configurator-frontend-staging' # Your bucket name
+  # Your Role ARN from Terraform Output
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Angular App
+        # Builds the app to the 'dist' folder
+        run: npm run build --configuration=production
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: ${{ secrets.AWS_IAM_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Deploy to S3
+        # Syncs the dist folder to S3
+        # --delete removes files in S3 that no longer exist in your build
+        run: |
+          aws s3 sync ./dist/car-configurator s3://${{ env.S3_BUCKET_NAME }} \
+            --delete \
+            --cache-control "max-age=31536000,public"
