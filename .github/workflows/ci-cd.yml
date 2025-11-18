@@ -68,10 +68,8 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Deploy to S3
-        # Syncs the dist folder to S3
-        # --delete removes files in S3 that no longer exist in your build
         run: |
-          aws s3 sync ./dist/car-configurator s3://${{ env.S3_BUCKET_NAME }} \
+          aws s3 sync ./dist/car-configurator/browser s3://${{ env.S3_BUCKET_NAME }} \
             --delete \
             --cache-control "max-age=31536000,public"
 
