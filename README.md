@@ -1,2 +1,2 @@
 # car-configurator-web
-Angular Frontend calling 2 microservices with staging and prod pipeline
+Angular Frontend calling 3 microservices with staging pipeline
