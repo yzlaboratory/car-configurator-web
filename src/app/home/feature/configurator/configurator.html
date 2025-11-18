@@ -1,0 +1,40 @@
+<main>
+  <h1 class="text-9xl text-center text-violet-800 font-black">Hello tailwind works!</h1>
+
+  @defer (on immediate) {
+    <div class="mt-8">
+      <h2 class="text-3xl text-center font-bold">Available Models</h2>
+      <ul class="mt-4 text-center text-xl">
+        @for (color of catalog().colors; track color.id) {
+          <li>{{ color.id }}</li>
+          <li>{{ color.name }}</li>
+          <li>{{ color.price }}</li>
+          <li>{{ color.hex }}</li>
+        }
+        @for (motor of catalog().motorizations; track motor.id) {
+          <li>{{ motor.id }}</li>
+          <li>{{ motor.name }}</li>
+          <li>{{ motor.price }}</li>
+          <li>{{ motor.ps }}</li>
+          <li>{{ motor.fuelConsumptionCombined }}</li>
+        }
+        @for (rim of catalog().rims; track rim.id) {
+          <li>{{ rim.id }}</li>
+          <li>{{ rim.name }}</li>
+          <li>{{ rim.tag }}</li>
+          <li>{{ rim.size }}</li>
+        }
+        @for (extra of catalog().extras; track extra.id) {
+          <li>{{ extra.id }}</li>
+          <li>{{ extra.name }}</li>
+          <li>{{ extra.price }}</li>
+          <li>{{ extra.type }}</li>
+        }
+      </ul>
+    </div>
+  } @placeholder (minimum 1s) {
+    <p class="mt-8 text-center text-2xl text-gray-500">Connecting to the mothership...</p>
+  } @loading {
+    <p class="mt-8 text-center text-2xl text-gray-500">Loading available options...</p>
+  }
+</main>
