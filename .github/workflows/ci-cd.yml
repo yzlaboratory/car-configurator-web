@@ -58,8 +58,7 @@ jobs:
         run: npm ci
 
       - name: Build Angular App
-        # Builds the app to the 'dist' folder
-        run: npm run build --configuration=production
+        run: npm run build --configuration=staging
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
