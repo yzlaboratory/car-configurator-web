@@ -15,6 +15,10 @@
           "options": {
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
+            "index": {
+              "input": "src/index.html",
+              "output": "index.html"
+            },
             "assets": [
               {
                 "glob": "**/*",
