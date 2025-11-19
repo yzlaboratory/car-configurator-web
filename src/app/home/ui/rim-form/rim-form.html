@@ -1,1 +1,31 @@
-<p>rim-form works!</p>
+<app-card-container title="Felgen"
+  ><div class="gap-4 flex flex-col">
+    @for (size of keys(); track size) {
+      <div class="flex flex-col">
+        <div class="flex-row font-medium flex items-center gap-2">
+          <div>{{ size }}</div>
+        </div>
+        @if (selected != undefined && selected.size == size) {
+          <div class="flex-col flex mb-2">
+            <div class="text-sm font-light">{{ selected.name }}</div>
+            <div class="text-gray-500 text-xs">{{ selected.tag }}</div>
+            <div class="text-gray-500 text-xs">
+              {{ selected.price | currency: 'EUR' : 'symbol' : '1.2-2' : 'de-DE' }}
+            </div>
+          </div>
+        }
+        <div class="flex flex-row gap-2">
+          @for (rim of rimsBySize()[size]; track rim.id) {
+            <div
+              class="w-16 h-16 relative rounded-sm border-2 border-gray-300 border-solid shadow-sm hover:cursor-pointer"
+              [ngClass]="selected?.id === rim.id ? 'border-2 border-black!' : ''"
+              (click)="select(rim)"
+            >
+              <img [ngSrc]="baseAssetUrl + '/' + rim.imageUrl" fill />
+            </div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+</app-card-container>

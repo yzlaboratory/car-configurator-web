@@ -7,6 +7,8 @@ import { RimForm } from '../rim-form/rim-form';
 import { ExtraForm } from '../extra-form/extra-form';
 import { Motorization } from '../../../shared/data-access/entities/Motorization';
 import { Color } from '../../../shared/data-access/entities/Color';
+import { Rim } from '../../../shared/data-access/entities/Rims';
+import { Extra } from '../../../shared/data-access/entities/Extra';
 
 @Component({
   selector: 'app-configuration-container',
@@ -23,5 +25,13 @@ export class ConfigurationContainer {
 
   processColorUpdate(color: Color) {
     console.log('Configuration Container received color update: ', color);
+  }
+
+  processRimUpdate(rim: Rim) {
+    console.log('Configuration Container received color update: ', rim);
+  }
+
+  processExtrasUpdate(extras: Extra[]) {
+    console.log('Configuration Container received extras update: ', extras);
   }
 }

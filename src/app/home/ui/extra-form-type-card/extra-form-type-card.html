@@ -1,0 +1,38 @@
+<div class="flex-row flex justify-between items-center mt-2">
+  <div class="text-sm font-normal">{{ type() }}</div>
+  <span
+    (click)="toggle()"
+    [ngClass]="this.isOpen() ? '' : 'hidden!'"
+    class="text-gray-500 material-symbols-outlined hover:cursor-pointer hoverable-item"
+    >remove</span
+  >
+  <span
+    (click)="toggle()"
+    [ngClass]="this.isOpen() ? 'hidden!' : ''"
+    class="text-gray-500 material-symbols-outlined hover:cursor-pointer hoverable-item"
+    >add</span
+  >
+</div>
+<div
+  class="grid [&>div]:overflow-hidden transition-[grid-template-rows] ease-in-out transition-normal duration-300"
+  [ngClass]="this.isOpen() ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'"
+>
+  <div class="grid grid-cols-2 flex-1 gap-3">
+    @for (extra of extras(); track extra.id) {
+      <div
+        class="flex flex-col gap-2 hover:border-black relative rounded-sm border-2 border-gray-300 border-solid shadow-sm hover:cursor-pointer"
+        (click)="select(extra)"
+        [ngClass]="selectedExtrasLocally().includes(extra) ? 'border-2 border-black!' : ''"
+      >
+        <img [ngSrc]="baseAssetUrl + '/' + extra.imageUrl" height="200" width="200" />
+        <div class="m-2">
+          <div class="text-sm">{{ extra.name }}</div>
+          <div class="text-gray-500 text-xs">
+            {{ extra.price | currency: 'EUR' : 'symbol' : '1.2-2' : 'de-DE' }}
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>
+<hr [ngClass]="this.isOpen() ? 'mt-4' : 'mt-2'" class="text-gray-300" />

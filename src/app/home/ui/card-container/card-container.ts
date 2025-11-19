@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component, computed, input, model } from '@angular/core';
+import { Component, computed, input, model, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
@@ -10,8 +10,8 @@ import { toSignal } from '@angular/core/rxjs-interop';
 })
 export class CardContainer {
   title = input<string>();
-
-  isOpen = model<boolean>(true);
+  hasErrorState = input<boolean>();
+  isOpen = signal<boolean>(true);
 
   toggle() {
     this.isOpen.update((open) => !open);

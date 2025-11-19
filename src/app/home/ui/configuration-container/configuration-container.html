@@ -10,8 +10,11 @@
       [colors]="catalog()!.colors"
       (color)="processColorUpdate($event)"
     ></app-color-form>
-    <app-rim-form></app-rim-form>
-    <app-extra-form></app-extra-form>
+    <app-rim-form [rims]="catalog()!.rims" (rim)="processRimUpdate($event)"></app-rim-form>
+    <app-extra-form
+      [extras]="catalog()!.extras"
+      (selectedExtrasEmitter)="processExtrasUpdate($event)"
+    ></app-extra-form>
   </section>
 </div>
 

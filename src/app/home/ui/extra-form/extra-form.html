@@ -1,1 +1,16 @@
-<p>extra-form works!</p>
+<app-card-container title="Extras" [hasErrorState]="errorState()">
+  @if (errorState()) {
+    <div class="text-red-600 text-sm font-medium">Sie können maximal 5 Extras auswählen.</div>
+  }
+  <div class="flex flex-col">
+    @for (type of keys(); track type) {
+      <app-extra-form-type-card
+        [type]="type"
+        [extras]="extrasByType()[type]"
+        [numberOfSelectedExtrasAcrossTypes]="selectedExtras().length"
+        (extrasDict)="handleExtraSelection($event)"
+        (errorState)="setErrorState()"
+      ></app-extra-form-type-card>
+    }
+  </div>
+</app-card-container>

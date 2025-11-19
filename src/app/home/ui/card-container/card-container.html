@@ -1,5 +1,6 @@
 <div
   class="gap-1 max-w-full max-h-max min-h-max shadow-md rounded-md p-3 duration-250 border border-gray-100 flex flex-col transition-shadow"
+  [ngClass]="hasErrorState() ? 'border-red-500!' : ''"
 >
   <div class="flex flex-row justify-between">
     <h2 class="text-lg font-bold">{{ title() }}</h2>
