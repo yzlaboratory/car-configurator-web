@@ -1,0 +1,22 @@
+<div
+  class="card-container tobeabstracted max-w-full max-h-max min-h-max shadow-md rounded-md transition-shadow p-3 duration-250 border border-gray-100"
+>
+  <h2 class="text-lg font-bold mb-4">Motorisierung</h2>
+  <div class="flex flex-col gap-4">
+    @for (motor of motors(); track motor.id) {
+      <div
+        class="hover:bg-gray-100 border-2 border-gray-300 rounded-sm p-4 hover:cursor-pointer flex flex-row justify-between items-center"
+        [ngClass]="selected?.id === motor.id ? 'border-black!' : ''"
+        (click)="select(motor)"
+      >
+        <div class="flex flex-col">
+          <div class="font-bold text-lg">{{ motor.name }}</div>
+          <div class="text-sm text-gray-500">
+            {{ motor.ps }} PS - {{ motor.fuelConsumptionCombined }} l/100km (komb.)
+          </div>
+        </div>
+        <div class="font-bold text-lg">{{ motor.price }} €</div>
+      </div>
+    }
+  </div>
+</div>

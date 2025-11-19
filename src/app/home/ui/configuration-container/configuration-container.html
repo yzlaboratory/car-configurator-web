@@ -1,3 +1,15 @@
+<div class="flex flex-row max-w-full">
+  <section class="flex-2 bg-black"></section>
+  <section class="flex-1 mx-6 gap-4 flex flex-col">
+    <app-configuration-header [modelId]="catalog()!.modelId"></app-configuration-header>
+    <app-motor-form [motors]="catalog()!.motorizations"></app-motor-form>
+    <app-color-form></app-color-form>
+    <app-rim-form></app-rim-form>
+    <app-extra-form></app-extra-form>
+  </section>
+</div>
+
+<!--
 <div class="mt-8">
   <h2 class="text-3xl text-center font-bold text-yellow-800">Available Models</h2>
   <ul class="mt-4 text-center text-xl">
@@ -28,3 +40,4 @@
     }
   </ul>
 </div>
+-->
