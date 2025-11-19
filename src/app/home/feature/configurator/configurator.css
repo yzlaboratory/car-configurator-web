@@ -1,0 +1,4 @@
+:host {
+  @apply flex flex-col min-w-lvh min-h-max;
+  max-width: 100%;
+}
