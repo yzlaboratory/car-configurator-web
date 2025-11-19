@@ -8,9 +8,8 @@ describe('ExtraFormTypeCard', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ExtraFormTypeCard]
-    })
-    .compileComponents();
+      imports: [ExtraFormTypeCard],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ExtraFormTypeCard);
     component = fixture.componentInstance;

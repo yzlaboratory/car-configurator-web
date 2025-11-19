@@ -8,9 +8,8 @@ describe('ExtraForm', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ExtraForm]
-    })
-    .compileComponents();
+      imports: [ExtraForm],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ExtraForm);
     component = fixture.componentInstance;

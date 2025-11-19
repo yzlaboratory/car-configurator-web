@@ -1,4 +1,4 @@
-import { Component, computed, input, output, signal, WritableSignal } from '@angular/core';
+import { Component, computed, input, output, signal } from '@angular/core';
 import { Extra } from '../../../shared/data-access/entities/Extra';
 import { environment } from '../../../../environments/environment';
 import { CardContainer } from '../card-container/card-container';
@@ -36,7 +36,7 @@ export class ExtraForm {
   });
 
   handleExtraSelection(extraDict: ExtraDictionary) {
-    let selectedExtrasByType = this.selectedExtras().reduce((dict, extra) => {
+    const selectedExtrasByType = this.selectedExtras().reduce((dict, extra) => {
       if (dict[extra.type] === undefined) {
         dict[extra.type] = [extra];
       } else {
@@ -50,7 +50,7 @@ export class ExtraForm {
         extraDict[Object.keys(extraDict)[0]].length
     ) {
       //extra just got selected
-      for (let extra of extraDict[Object.keys(extraDict)[0]]) {
+      for (const extra of extraDict[Object.keys(extraDict)[0]]) {
         if (!this.selectedExtras().includes(extra)) {
           this.selectedExtras.update((current) => [...current, extra]);
           this.selectedExtrasEmitter.emit(this.selectedExtras());
@@ -58,7 +58,7 @@ export class ExtraForm {
       }
     } else {
       //extra just got unselected
-      for (let extra of selectedExtrasByType[Object.keys(extraDict)[0]]) {
+      for (const extra of selectedExtrasByType[Object.keys(extraDict)[0]]) {
         if (!extraDict[Object.keys(extraDict)[0]].includes(extra)) {
           this.selectedExtras.update((current) => current.filter((e) => e.id !== extra.id));
           this.selectedExtrasEmitter.emit(this.selectedExtras());

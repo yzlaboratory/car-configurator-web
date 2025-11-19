@@ -1,8 +1,11 @@
-<app-header [price]="0"></app-header>
+<app-header [price]="price()"></app-header>
 <main>
-  <h1 class="text-5xl text-center font-bold text-green-200">Hello tailwind works!</h1>
   @defer (on idle) {
-    <app-configuration-container [catalog]="catalog()"></app-configuration-container>
+    <app-configuration-container
+      [catalog]="catalog()"
+      (pickedCatalogEmitter)="updateSummary($event)"
+      (price)="updatePrice($event)"
+    ></app-configuration-container>
   } @placeholder (minimum 200ms) {
     <div class="min-h-lvh">
       <p class="mt-8 text-center text-2xl text-gray-500">Connecting to the mothership...</p>

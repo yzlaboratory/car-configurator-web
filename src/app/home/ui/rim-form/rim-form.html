@@ -5,7 +5,7 @@
         <div class="flex-row font-medium flex items-center gap-2">
           <div>{{ size }}</div>
         </div>
-        @if (selected != undefined && selected.size == size) {
+        @if (selected !== undefined && selected.size === size) {
           <div class="flex-col flex mb-2">
             <div class="text-sm font-light">{{ selected.name }}</div>
             <div class="text-gray-500 text-xs">{{ selected.tag }}</div>
@@ -20,8 +20,10 @@
               class="w-16 h-16 relative rounded-sm border-2 border-gray-300 border-solid shadow-sm hover:cursor-pointer"
               [ngClass]="selected?.id === rim.id ? 'border-2 border-black!' : ''"
               (click)="select(rim)"
+              (keyup.enter)="select(rim)"
+              tabindex="0"
             >
-              <img [ngSrc]="baseAssetUrl + '/' + rim.imageUrl" fill />
+              <img [ngSrc]="baseAssetUrl + '/' + rim.imageUrl" fill alt="rim" />
             </div>
           }
         </div>

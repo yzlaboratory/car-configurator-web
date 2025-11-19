@@ -1,5 +1,7 @@
-<div class="flex flex-row max-w-full">
-  <section class="flex-2 bg-black"></section>
+<div class="flex flex-row max-w-full pt-8">
+  <section class="flex-2">
+    <app-hero-section></app-hero-section>
+  </section>
   <section class="flex-1 mx-6 gap-4 flex flex-col">
     <app-configuration-header [modelId]="catalog()!.modelId"></app-configuration-header>
     <app-motor-form
@@ -17,36 +19,3 @@
     ></app-extra-form>
   </section>
 </div>
-
-<!--
-<div class="mt-8">
-  <h2 class="text-3xl text-center font-bold text-yellow-800">Available Models</h2>
-  <ul class="mt-4 text-center text-xl">
-    @for (color of catalog()!.colors; track color.id) {
-      <li>{{ color.id }}</li>
-      <li>{{ color.name }}</li>
-      <li>{{ color.price }}</li>
-      <li>{{ color.hex }}</li>
-    }
-    @for (motor of catalog()!.motorizations; track motor.id) {
-      <li>{{ motor.id }}</li>
-      <li>{{ motor.name }}</li>
-      <li>{{ motor.price }}</li>
-      <li>{{ motor.ps }}</li>
-      <li>{{ motor.fuelConsumptionCombined }}</li>
-    }
-    @for (rim of catalog()!.rims; track rim.id) {
-      <li>{{ rim.id }}</li>
-      <li>{{ rim.name }}</li>
-      <li>{{ rim.tag }}</li>
-      <li>{{ rim.size }}</li>
-    }
-    @for (extra of catalog()!.extras; track extra.id) {
-      <li>{{ extra.id }}</li>
-      <li>{{ extra.name }}</li>
-      <li>{{ extra.price }}</li>
-      <li>{{ extra.type }}</li>
-    }
-  </ul>
-</div>
--->

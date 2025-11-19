@@ -8,9 +8,8 @@ describe('RimForm', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RimForm]
-    })
-    .compileComponents();
+      imports: [RimForm],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(RimForm);
     component = fixture.componentInstance;

@@ -1,8 +1,9 @@
+import { CurrencyPipe } from '@angular/common';
 import { Component, computed, input } from '@angular/core';
 
 @Component({
   selector: 'app-header',
-  imports: [],
+  imports: [CurrencyPipe],
   templateUrl: './header.html',
   styleUrl: './header.css',
 })

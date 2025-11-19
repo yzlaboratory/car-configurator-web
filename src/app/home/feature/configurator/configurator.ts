@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, Signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal, Signal } from '@angular/core';
 import { CatalogService } from '../../../shared/data-access/catalog.service';
 import { Catalog } from '../../../shared/data-access/entities/Catalog';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -15,6 +15,16 @@ import { Header } from '../../../shared/ui/header/header';
 })
 export class Configurator {
   private service: CatalogService = inject(CatalogService);
+
+  price = signal<number>(0);
+
+  updatePrice(newPrice: number) {
+    this.price.set(newPrice);
+  }
+
+  updateSummary(catalog: Catalog) {
+    console.log('Configurator received updated catalog: ', catalog);
+  }
 
   catalog: Signal<Catalog> = toSignal(this.service.getCatalog(), {
     initialValue: { modelId: '', colors: [], motorizations: [], rims: [], extras: [] },

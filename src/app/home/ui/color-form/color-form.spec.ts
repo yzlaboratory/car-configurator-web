@@ -8,9 +8,8 @@ describe('ColorForm', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ColorForm]
-    })
-    .compileComponents();
+      imports: [ColorForm],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ColorForm);
     component = fixture.componentInstance;

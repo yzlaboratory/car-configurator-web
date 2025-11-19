@@ -10,7 +10,7 @@ export class ConfigurationHeader {
   modelId = input<string>();
 
   modelName = computed(() => {
-    let id = this.modelId()!;
+    const id = this.modelId()!;
     if (id == '') {
       return '';
     } else {
@@ -19,7 +19,7 @@ export class ConfigurationHeader {
   });
 
   modelYear = computed(() => {
-    let id = this.modelId()!;
+    const id = this.modelId()!;
     if (id == '') {
       return '';
     } else {

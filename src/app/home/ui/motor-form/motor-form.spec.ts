@@ -8,9 +8,8 @@ describe('MotorForm', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MotorForm]
-    })
-    .compileComponents();
+      imports: [MotorForm],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(MotorForm);
     component = fixture.componentInstance;

@@ -6,12 +6,16 @@
     <h2 class="text-lg font-bold">{{ title() }}</h2>
     <span
       (click)="toggle()"
+      tabindex="0"
+      (keyup.enter)="toggle()"
       [ngClass]="this.isOpen() ? '' : 'hidden!'"
       class="text-gray-500 material-symbols-outlined hover:cursor-pointer hoverable-item"
       >remove</span
     >
     <span
       (click)="toggle()"
+      tabindex="0"
+      (keyup.enter)="toggle()"
       [ngClass]="this.isOpen() ? 'hidden!' : ''"
       class="text-gray-500 material-symbols-outlined hover:cursor-pointer hoverable-item"
       >add</span

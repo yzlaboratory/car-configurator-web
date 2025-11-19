@@ -1,6 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component, computed, input, model, signal } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { Component, input, signal } from '@angular/core';
 
 @Component({
   selector: 'app-card-container',

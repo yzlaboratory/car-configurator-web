@@ -31,13 +31,15 @@
       <div class="hoverable-item flex-col flex">
         <div class="items-center flex-row flex gap-1">
           <span class="material-symbols-outlined text-black fill-black text-md!"> calculate </span>
-          <div class="text-xs">{{ rate() }} € mtl.*</div>
+          <div class="text-xs">
+            {{ rate() | currency: 'EUR' : 'symbol' : '1.2-2' : 'de-DE' }} mtl.*
+          </div>
         </div>
         <div class="text-gray-500 text-[8px] relative left-1">Rate individualisieren</div>
       </div>
       <div class="w-px h-8 bg-gray-300"></div>
       <div class="hoverable-item items-center flex-col flex gap-1">
-        <div class="text-sm">{{ price() }} €</div>
+        <div class="text-sm">{{ price() | currency: 'EUR' : 'symbol' : '1.2-2' : 'de-DE' }}</div>
         <div class="text-gray-500 text-[8px]">Alle Preise inkl. 19% ...</div>
       </div>
       <div

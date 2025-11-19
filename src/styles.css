@@ -11,3 +11,13 @@ body {
 .hoverable-item {
   @apply hover:bg-gray-100 max-h-max rounded-sm p-1;
 }
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.hides-crollbar::-webkit-scrollbar {
+  display: none;
+}
+/* Hide scrollbar for IE, Edge and Firefox */
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
