@@ -1,8 +1,8 @@
 <header class="flex flex-col max-w-full min-h-32 max-h-32">
-  <section class="flex flex-row flex-1 justify-between px-12">
-    <div class="items-center flex-row flex hoverable-item">
-      <span class="material-symbols-outlined text-black fill-black text-md!"> menu </span
-      ><label class="text-xs">Menü</label>
+  <section class="items-center flex flex-row flex-1 justify-between px-12">
+    <div class="items-center flex-row flex hoverable-item gap-1">
+      <span class="material-symbols-outlined text-black fill-black text-md!"> menu </span>
+      <div class="text-xs">Menü</div>
     </div>
     <h1 class="text-2xl font-bold uppercase self-center">Lumina.Motors</h1>
     <div class="flex gap-2 items-center">
@@ -14,31 +14,31 @@
       </span>
     </div>
   </section>
-  <section class="flex flex-row flex-1 justify-between px-6">
+  <section class="flex flex-row flex-1 justify-between px-6 items-center">
     <div class="flex flex-row gap-6">
-      <div class="hoverable-item items-center flex-row flex">
+      <div class="gap-1 hoverable-item items-center flex-row flex">
         <span class="material-symbols-outlined text-black fill-black text-md!">
           keyboard_backspace
         </span>
-        <label class="text-xs">Modell wechseln</label>
+        <div class="text-xs">Modell wechseln</div>
       </div>
-      <div class="hoverable-item items-center flex-row flex">
+      <div class="gap-1 hoverable-item items-center flex-row flex">
         <span class="material-symbols-outlined text-black fill-black text-md!"> upload </span>
-        <label class="text-xs">Lumina Code erstellen</label>
+        <div class="text-xs">Lumina Code erstellen</div>
       </div>
     </div>
     <div class="flex-row flex gap-4 items-center">
       <div class="hoverable-item flex-col flex">
         <div class="items-center flex-row flex gap-1">
           <span class="material-symbols-outlined text-black fill-black text-md!"> calculate </span>
-          <label class="text-xs">{{ rate() }} € mtl.*</label>
+          <div class="text-xs">{{ rate() }} € mtl.*</div>
         </div>
-        <label class="text-gray-500 text-[8px] relative left-1">Rate individualisieren</label>
+        <div class="text-gray-500 text-[8px] relative left-1">Rate individualisieren</div>
       </div>
       <div class="w-px h-8 bg-gray-500"></div>
       <div class="hoverable-item items-center flex-col flex gap-1">
-        <label class="text-sm">{{ price() }} €</label>
-        <label class="text-gray-500 text-[8px]">Alle Preise inkl. 19% ...</label>
+        <div class="text-sm">{{ price() }} €</div>
+        <div class="text-gray-500 text-[8px]">Alle Preise inkl. 19% ...</div>
       </div>
       <div
         class="px-4 py-3 rounded-sm border-2 text-xs self-center border-black border-solid hover:bg-gray-100 hover:border-gray-500 hover:cursor-pointer"
