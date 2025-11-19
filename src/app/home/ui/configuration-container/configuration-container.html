@@ -6,7 +6,10 @@
       [motors]="catalog()!.motorizations"
       (motor)="processMotorUpdate($event)"
     ></app-motor-form>
-    <app-color-form></app-color-form>
+    <app-color-form
+      [colors]="catalog()!.colors"
+      (color)="processColorUpdate($event)"
+    ></app-color-form>
     <app-rim-form></app-rim-form>
     <app-extra-form></app-extra-form>
   </section>

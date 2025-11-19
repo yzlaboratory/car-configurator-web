@@ -1,1 +1,27 @@
-<p>color-form works!</p>
+<app-card-container title="Außenfarben"
+  ><div class="color-container gap-4 flex flex-col">
+    @for (price of keys(); track price) {
+      <div class="price-container flex flex-col gap-1">
+        <div class="flex-row flex items-center gap-2">
+          <div>Aufpreis</div>
+          <div class="header text-sm text-gray-500">
+            {{ price | currency: 'EUR' : 'symbol' : '1.2-2' : 'de-DE' }}
+          </div>
+        </div>
+        @if (selected != undefined && selected.price == +price) {
+          <div class="text-xs lowercase">{{ selected.name }}</div>
+        }
+        <div class="flex flex-row gap-2">
+          @for (color of colorsByPrice()[price]; track color.id) {
+            <div
+              class="w-16 h-16 rounded-sm border-2 border-gray-300 border-solid shadow-sm hover:cursor-pointer"
+              [ngClass]="selected?.id === color.id ? 'border-2 border-black!' : ''"
+              [style.backgroundColor]="color.hex"
+              (click)="select(color)"
+            ></div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+</app-card-container>
