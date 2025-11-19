@@ -1,7 +1,4 @@
-<div
-  class="card-container tobeabstracted max-w-full max-h-max min-h-max shadow-md rounded-md transition-shadow p-3 duration-250 border border-gray-100"
->
-  <h2 class="text-lg font-bold mb-4">Motorisierung</h2>
+<app-card-container title="Motorization">
   <div class="flex flex-col gap-4">
     @for (motor of motors(); track motor.id) {
       <div
@@ -19,4 +16,4 @@
       </div>
     }
   </div>
-</div>
+</app-card-container>

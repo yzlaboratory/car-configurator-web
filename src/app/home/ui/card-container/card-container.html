@@ -1,0 +1,25 @@
+<div
+  class="gap-1 max-w-full max-h-max min-h-max shadow-md rounded-md p-3 duration-250 border border-gray-100 flex flex-col transition-shadow"
+>
+  <div class="flex flex-row justify-between">
+    <h2 class="text-lg font-bold">{{ title() }}</h2>
+    <span
+      (click)="toggle()"
+      [ngClass]="this.isOpen() ? '' : 'hidden!'"
+      class="text-gray-500 material-symbols-outlined hover:cursor-pointer hoverable-item"
+      >remove</span
+    >
+    <span
+      (click)="toggle()"
+      [ngClass]="this.isOpen() ? 'hidden!' : ''"
+      class="text-gray-500 material-symbols-outlined hover:cursor-pointer hoverable-item"
+      >add</span
+    >
+  </div>
+  <div
+    [ngClass]="this.isOpen() ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'"
+    class="[&>div]:overflow-hidden grid transition-[grid-template-rows] ease-in-out transition-normal duration-300"
+  >
+    <ng-content />
+  </div>
+</div>

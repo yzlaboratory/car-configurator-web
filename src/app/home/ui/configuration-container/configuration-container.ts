@@ -5,6 +5,7 @@ import { ColorForm } from '../color-form/color-form';
 import { MotorForm } from '../motor-form/motor-form';
 import { RimForm } from '../rim-form/rim-form';
 import { ExtraForm } from '../extra-form/extra-form';
+import { Motorization } from '../../../shared/data-access/entities/Motorization';
 
 @Component({
   selector: 'app-configuration-container',
@@ -14,4 +15,8 @@ import { ExtraForm } from '../extra-form/extra-form';
 })
 export class ConfigurationContainer {
   catalog = input<Catalog>();
+
+  processMotorUpdate(motor: Motorization) {
+    console.log('Configuration Container received motor update: ', motor);
+  }
 }

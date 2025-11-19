@@ -2,7 +2,10 @@
   <section class="flex-2 bg-black"></section>
   <section class="flex-1 mx-6 gap-4 flex flex-col">
     <app-configuration-header [modelId]="catalog()!.modelId"></app-configuration-header>
-    <app-motor-form [motors]="catalog()!.motorizations"></app-motor-form>
+    <app-motor-form
+      [motors]="catalog()!.motorizations"
+      (motor)="processMotorUpdate($event)"
+    ></app-motor-form>
     <app-color-form></app-color-form>
     <app-rim-form></app-rim-form>
     <app-extra-form></app-extra-form>
