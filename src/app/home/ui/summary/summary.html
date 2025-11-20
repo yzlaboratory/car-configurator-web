@@ -1,11 +1,11 @@
-<div class="flex flex-row max-w-full pt-8">
+<div class="flex flex-row max-w-full pt-8" #summaryRef>
   <section class="mx-28 flex-2 flex flex-col gap-8">
     <div class="flex-row flex min-w-full">
       <div class="min-w-1/2 max-w-1/2 relative aspect-square">
-        <img [ngSrc]="baseAssetUrl + '/car-1.png'" class="rounded-md" fill />
+        <img [ngSrc]="baseAssetUrl + '/car-1.png'" class="rounded-md" fill priority />
       </div>
       <div class="min-w-1/2 relative aspect-square">
-        <img [ngSrc]="baseAssetUrl + '/car-4.png'" class="" fill />
+        <img [ngSrc]="baseAssetUrl + '/car-4.png'" class="" fill priority />
       </div>
     </div>
     <app-card-container title="Ihre gewählten Ausstattungen">
