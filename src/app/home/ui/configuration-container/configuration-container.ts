@@ -10,10 +10,11 @@ import { Color } from '../../../shared/data-access/entities/Color';
 import { Rim } from '../../../shared/data-access/entities/Rims';
 import { Extra } from '../../../shared/data-access/entities/Extra';
 import { HeroSection } from '../hero-section/hero-section';
+import { Summary } from '../summary/summary';
 
 @Component({
   selector: 'app-configuration-container',
-  imports: [ConfigurationHeader, ColorForm, MotorForm, RimForm, ExtraForm, HeroSection],
+  imports: [ConfigurationHeader, ColorForm, MotorForm, RimForm, ExtraForm, HeroSection, Summary],
   templateUrl: './configuration-container.html',
   styleUrl: './configuration-container.css',
 })
@@ -22,12 +23,13 @@ export class ConfigurationContainer {
   price = output<number>();
   pickedCatalogEmitter = output<Catalog>();
   pickedFromCatalog = signal<Catalog>({
-    modelId: '',
+    modelId: 'Astral X_2025',
     colors: [],
     motorizations: [],
     rims: [],
     extras: [],
   });
+  localPrice = signal<number>(0);
 
   processMotorUpdate(motor: Motorization) {
     this.pickedFromCatalog.update((current) => {
@@ -83,6 +85,7 @@ export class ConfigurationContainer {
         totalPrice += extra.price;
       }
     }
+    this.localPrice.set(totalPrice);
     this.price.emit(totalPrice);
   }
 }

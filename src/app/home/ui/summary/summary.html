@@ -1,1 +1,141 @@
-<p>summary works!</p>
+<div class="flex flex-row max-w-full pt-8">
+  <section class="mx-28 flex-2 flex flex-col gap-8">
+    <div class="flex-row flex min-w-full">
+      <div class="min-w-1/2 max-w-1/2 relative aspect-square">
+        <img [ngSrc]="baseAssetUrl + '/car-1.png'" class="rounded-md" fill />
+      </div>
+      <div class="min-w-1/2 relative aspect-square">
+        <img [ngSrc]="baseAssetUrl + '/car-4.png'" class="" fill />
+      </div>
+    </div>
+    <app-card-container title="Ihre gewählten Ausstattungen">
+      <div class="gap-2 flex flex-col">
+        <div class="flex flex-col gap-2">
+          <div class="text-md font-bold">Motor</div>
+          <hr class="text-gray-300" />
+        </div>
+        @if (
+          selectedItems().motorizations !== undefined && selectedItems().motorizations.length > 0
+        ) {
+          @let motor = selectedItems().motorizations[0];
+          <div class="flex flex-row items-center justify-between">
+            <div class="flex flex-col">
+              <div class="font-bold text-md">{{ motor.name }}</div>
+              <div class="text-xs text-gray-500">
+                {{ motor.ps }} PS - {{ motor.fuelConsumptionCombined }} l/100km (komb.)
+              </div>
+            </div>
+            <div class="text-lg">
+              {{ motor.price | currency: 'EUR' : 'symbol' : '1.2-2' : 'de-DE' }}
+            </div>
+          </div>
+        } @else {
+          <div class="text-orange-300 italic">Sie müssen noch einen Motor auswählen.</div>
+        }
+        <div class="flex flex-col gap-2">
+          <div class="text-md font-bold">Außenfarbe</div>
+          <hr class="text-gray-300" />
+        </div>
+        @if (selectedItems().colors !== undefined && selectedItems().colors.length > 0) {
+          @let color = selectedItems().colors[0];
+          <div class="flex flex-row items-center justify-between">
+            <div class="flex-row flex items-center gap-4">
+              <div
+                class="w-12 h-12 rounded-sm border-2 border-gray-300 border-solid shadow-sm hover:cursor-pointer"
+                [style.backgroundColor]="color.hex"
+              ></div>
+              <div class="text-sm font-light">{{ color.name }}</div>
+            </div>
+            <div class="text-lg">
+              {{ color.price | currency: 'EUR' : 'symbol' : '1.2-2' : 'de-DE' }}
+            </div>
+          </div>
+        } @else {
+          <div class="text-orange-300 italic">Sie müssen noch eine Außenfarbe auswählen.</div>
+        }
+        <div class="flex flex-col gap-2">
+          <div class="text-md font-bold">Felge</div>
+          <hr class="text-gray-300" />
+        </div>
+        @if (selectedItems().rims !== undefined && selectedItems().rims.length > 0) {
+          @let rim = selectedItems().rims[0];
+          <div class="flex flex-row items-center justify-between">
+            <div class="flex-row flex items-center gap-4">
+              <div
+                class="w-16 h-16 relative rounded-sm border-2 border-gray-300 border-solid shadow-sm hover:cursor-pointer"
+              >
+                <img [ngSrc]="baseAssetUrl + '/' + rim.imageUrl" fill alt="rim" />
+              </div>
+              <div class="flex-col flex mb-2">
+                <div class="text-sm font-light">{{ rim.name }}</div>
+                <div class="text-gray-500 text-xs">{{ rim.tag }}</div>
+              </div>
+            </div>
+            <div class="text-lg">
+              {{ rim.price | currency: 'EUR' : 'symbol' : '1.2-2' : 'de-DE' }}
+            </div>
+          </div>
+        } @else {
+          <div class="text-orange-300 italic">Sie müssen noch eine Felge auswählen.</div>
+        }
+        <div class="flex flex-col gap-2">
+          <div class="text-md font-bold">Extras</div>
+          <hr class="text-gray-300" />
+        </div>
+        @if (selectedItems().extras !== undefined && selectedItems().extras.length > 0) {
+          @for (extra of selectedItems().extras; track extra.id) {
+            <div class="flex flex-row items-center justify-between">
+              <div class="flex-row flex items-center gap-4">
+                <div
+                  class="w-16 h-16 relative rounded-sm border-2 border-gray-300 border-solid shadow-sm hover:cursor-pointer"
+                >
+                  <img [ngSrc]="baseAssetUrl + '/' + extra.imageUrl" fill alt="rim" />
+                </div>
+                <div class="flex-col flex mb-2">
+                  <div class="text-sm font-light">{{ extra.name }}</div>
+                  <div class="text-gray-500 text-xs">{{ extra.type }}</div>
+                </div>
+              </div>
+              <div class="text-lg">
+                {{ extra.price | currency: 'EUR' : 'symbol' : '1.2-2' : 'de-DE' }}
+              </div>
+            </div>
+          }
+        } @else {
+          <div class="text-gray-300 italic">Sie haben keine Extras ausgewählt.</div>
+        }
+      </div>
+    </app-card-container>
+  </section>
+  <section class="flex-1 mx-6 gap-8 flex flex-col">
+    <app-configuration-header [modelId]="selectedItems().modelId"></app-configuration-header>
+    <hr class="w-full text-gray-300" />
+    <div class="flex flex-col gap-6">
+      <div>
+        <div class="text-gray-500 text-sm">Gesamtpreis*</div>
+        <div class="text-2xl">{{ price() | currency: 'EUR' : 'symbol' : '1.2-2' : 'de-DE' }}</div>
+      </div>
+      <div>
+        <div class="text-gray-500 text-sm">Monatliche Rate*</div>
+        <div class="text-2xl">
+          {{ (price()! / 12) * 1.05 | currency: 'EUR' : 'symbol' : '1.2-2' : 'de-DE' }}
+        </div>
+      </div>
+    </div>
+    <hr class="w-full text-gray-300" />
+    <div
+      class="px-4 w-full text-center py-3 rounded-sm border-2 text-sm self-center border-black border-solid bg-black hover:bg-gray-700 hover:border-gray-700 hover:cursor-pointer text-white"
+    >
+      Bestellen
+    </div>
+    <div
+      class="w-full text-center px-4 py-3 rounded-sm border-2 text-sm self-center border-black border-solid hover:bg-gray-100 hover:border-gray-500 hover:cursor-pointer"
+    >
+      Lumina Code erstellen
+    </div>
+    <div class="text-xs">
+      * Alle Preise inkl. 19 % MwSt. zzgl. Auslieferungspauschale oder Kosten bei Werksabholung i.
+      H. v. bis zu 5.000 € inkl. MwSt.
+    </div>
+  </section>
+</div>

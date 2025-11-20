@@ -1,5 +1,5 @@
 <div class="flex flex-row max-w-full pt-8">
-  <section class="flex-2">
+  <section class="flex-2 mx-28">
     <app-hero-section></app-hero-section>
   </section>
   <section class="flex-1 mx-6 gap-4 flex flex-col">
@@ -19,3 +19,21 @@
     ></app-extra-form>
   </section>
 </div>
+<div class="divider h-96 w-full">
+  <div class="bg-gray-200 mx-72 h-full rounded-md">
+    <div class="gap-xs flex flex-col items-center justify-center h-full gap-4">
+      <h3 class="text-xl font-bold">Unser wichtigstes Bauteil: Ihre Meinung</h3>
+      <p class="text-center">
+        Mit Ihren Antworten helfen Sie uns dabei, unsere Website zu verbessern. Die Umfrage ist
+        anonym und dauert ca. 5 Minuten.
+      </p>
+      <div
+        class="px-4 py-3 rounded-sm border-2 text-sm self-center border-black border-solid bg-black hover:bg-gray-700 hover:border-gray-700 hover:cursor-pointer text-white"
+      >
+        Umfrage starten
+      </div>
+    </div>
+  </div>
+</div>
+<app-summary [selectedItems]="pickedFromCatalog()" [price]="localPrice()"></app-summary>
+<footer class="w-full h-64"></footer>
