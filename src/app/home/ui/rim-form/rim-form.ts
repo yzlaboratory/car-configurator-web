@@ -1,4 +1,4 @@
-import { Component, computed, input, output } from '@angular/core';
+import { Component, computed, effect, input, output } from '@angular/core';
 import { Rim } from '../../../shared/data-access/entities/Rims';
 import { CardContainer } from '../card-container/card-container';
 import { CurrencyPipe, NgClass } from '@angular/common';
@@ -14,6 +14,7 @@ import { environment } from '../../../../environments/environment';
 export class RimForm {
   rims = input<Rim[]>();
   rim = output<Rim>();
+  preselectedId = input<string | undefined>('');
 
   baseAssetUrl = environment.ASSET_API_URL;
 
@@ -39,5 +40,19 @@ export class RimForm {
     this.selected = rim;
     this.rim.emit(rim);
   }
+
+  effects = effect(() => {
+    if (
+      this.preselectedId() !== undefined &&
+      this.preselectedId() !== '' &&
+      this.rims() !== undefined
+    ) {
+      for (const rim of this.rims()!) {
+        if (rim.id === this.preselectedId()) {
+          this.select(rim);
+        }
+      }
+    }
+  });
 }
 type RimDictionary = { [size: string]: Rim[] };

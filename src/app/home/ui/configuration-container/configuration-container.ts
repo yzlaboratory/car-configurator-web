@@ -1,4 +1,4 @@
-import { Component, input, output, signal } from '@angular/core';
+import { Component, effect, input, output, signal } from '@angular/core';
 import { Catalog } from '../../../shared/data-access/entities/Catalog';
 import { ConfigurationHeader } from '../configuration-header/configuration-header';
 import { ColorForm } from '../color-form/color-form';
@@ -11,6 +11,7 @@ import { Rim } from '../../../shared/data-access/entities/Rims';
 import { Extra } from '../../../shared/data-access/entities/Extra';
 import { HeroSection } from '../hero-section/hero-section';
 import { Summary } from '../summary/summary';
+import { Config } from '../../../shared/data-access/entities/Config';
 
 @Component({
   selector: 'app-configuration-container',
@@ -20,6 +21,7 @@ import { Summary } from '../summary/summary';
 })
 export class ConfigurationContainer {
   catalog = input<Catalog>();
+  config = input<Config | undefined>(undefined);
   price = output<number>();
   pickedCatalogEmitter = output<Catalog>();
   pickedFromCatalog = signal<Catalog>({
@@ -30,6 +32,25 @@ export class ConfigurationContainer {
     extras: [],
   });
   localPrice = signal<number>(0);
+
+  colorId = signal<string | undefined>(undefined);
+  motorId = signal<string | undefined>(undefined);
+  rimId = signal<string | undefined>(undefined);
+  extraIds = signal<string[] | undefined>(undefined);
+
+  onConfigLoaded = effect(() => {
+    if (this.config() !== undefined) {
+      const idArray = this.config()!.config;
+      const extraArray: string[] = [];
+      for (const id of idArray) {
+        if (id.charAt(0) === 'C') this.colorId.set(id);
+        if (id.charAt(0) === 'M') this.motorId.set(id);
+        if (id.charAt(0) === 'R') this.rimId.set(id);
+        if (id.charAt(0) === 'E') extraArray.push(id);
+      }
+      this.extraIds.set(extraArray);
+    }
+  });
 
   processMotorUpdate(motor: Motorization) {
     this.pickedFromCatalog.update((current) => {

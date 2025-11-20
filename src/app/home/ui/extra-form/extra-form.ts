@@ -1,4 +1,4 @@
-import { Component, computed, input, output, signal } from '@angular/core';
+import { AfterContentInit, Component, computed, input, output, signal } from '@angular/core';
 import { Extra } from '../../../shared/data-access/entities/Extra';
 import { environment } from '../../../../environments/environment';
 import { CardContainer } from '../card-container/card-container';
@@ -11,10 +11,12 @@ import { ExtraDictionary } from '../../utils/ExtraDictionary';
   templateUrl: './extra-form.html',
   styleUrl: './extra-form.css',
 })
-export class ExtraForm {
+export class ExtraForm implements AfterContentInit {
   extras = input<Extra[]>();
+  preselectedIds = input<string[] | undefined>([]);
   selectedExtrasEmitter = output<Extra[]>();
   selectedExtras = signal<Extra[]>([]);
+  selectedExtrasByType = signal<ExtraDictionary>({});
 
   errorState = signal(false);
 
@@ -70,5 +72,25 @@ export class ExtraForm {
 
   setErrorState() {
     this.errorState.set(true);
+  }
+
+  ngAfterContentInit(): void {
+    if (
+      this.preselectedIds() !== undefined &&
+      this.preselectedIds()!.length > 0 &&
+      this.extras() !== undefined
+    ) {
+      const selectedExtrasDict = this.extras()!.reduce((dict, extra) => {
+        if (this.preselectedIds()!.includes(extra.id)) {
+          if (dict[extra.type] === undefined) {
+            dict[extra.type] = [extra];
+          } else {
+            dict[extra.type].push(extra);
+          }
+        }
+        return dict;
+      }, {} as ExtraDictionary);
+      this.selectedExtrasByType.set(selectedExtrasDict);
+    }
   }
 }

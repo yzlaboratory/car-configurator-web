@@ -5,15 +5,22 @@
   <section class="flex-1 mx-6 gap-4 flex flex-col">
     <app-configuration-header [modelId]="catalog()!.modelId"></app-configuration-header>
     <app-motor-form
+      [preselectedId]="motorId()"
       [motors]="catalog()!.motorizations"
       (motor)="processMotorUpdate($event)"
     ></app-motor-form>
     <app-color-form
+      [preselectedId]="colorId()"
       [colors]="catalog()!.colors"
       (color)="processColorUpdate($event)"
     ></app-color-form>
-    <app-rim-form [rims]="catalog()!.rims" (rim)="processRimUpdate($event)"></app-rim-form>
+    <app-rim-form
+      [preselectedId]="rimId()"
+      [rims]="catalog()!.rims"
+      (rim)="processRimUpdate($event)"
+    ></app-rim-form>
     <app-extra-form
+      [preselectedIds]="extraIds()"
       [extras]="catalog()!.extras"
       (selectedExtrasEmitter)="processExtrasUpdate($event)"
     ></app-extra-form>

@@ -2,6 +2,7 @@
 <main class="mt-32">
   @defer (on idle) {
     <app-configuration-container
+      [config]="config()"
       [catalog]="catalog()"
       (pickedCatalogEmitter)="updateSummary($event)"
       (price)="updatePrice($event)"

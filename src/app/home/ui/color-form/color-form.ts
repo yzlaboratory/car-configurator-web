@@ -1,4 +1,4 @@
-import { Component, computed, input, output } from '@angular/core';
+import { Component, computed, effect, input, output } from '@angular/core';
 import { Color } from '../../../shared/data-access/entities/Color';
 import { CurrencyPipe, NgClass, CommonModule } from '@angular/common';
 import { CardContainer } from '../card-container/card-container';
@@ -11,6 +11,7 @@ import { CardContainer } from '../card-container/card-container';
 })
 export class ColorForm {
   colors = input<Color[]>();
+  preselectedId = input<string | undefined>('');
   color = output<Color>();
 
   colorsByPrice = computed(() => {
@@ -35,5 +36,19 @@ export class ColorForm {
     this.selected = color;
     this.color.emit(color);
   }
+
+  effects = effect(() => {
+    if (
+      this.preselectedId() !== undefined &&
+      this.preselectedId() !== '' &&
+      this.colors() !== undefined
+    ) {
+      for (const color of this.colors()!) {
+        if (color.id === this.preselectedId()) {
+          this.select(color);
+        }
+      }
+    }
+  });
 }
 type ColorDictionary = { [price: string]: Color[] };

@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, effect, input, output } from '@angular/core';
 import { Motorization } from '../../../shared/data-access/entities/Motorization';
 import { NgClass } from '@angular/common';
 import { CardContainer } from '../card-container/card-container';
@@ -11,6 +11,7 @@ import { CardContainer } from '../card-container/card-container';
 })
 export class MotorForm {
   motors = input<Motorization[]>();
+  preselectedId = input<string | undefined>('');
   motor = output<Motorization>();
 
   selected: Motorization | undefined;
@@ -20,4 +21,18 @@ export class MotorForm {
     this.selected = motor;
     this.motor.emit(motor);
   }
+
+  effects = effect(() => {
+    if (
+      this.preselectedId() !== undefined &&
+      this.preselectedId() !== '' &&
+      this.motors() !== undefined
+    ) {
+      for (const motor of this.motors()!) {
+        if (motor.id === this.preselectedId()) {
+          this.select(motor);
+        }
+      }
+    }
+  });
 }

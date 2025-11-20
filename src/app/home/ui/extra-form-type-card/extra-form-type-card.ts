@@ -1,4 +1,4 @@
-import { Component, input, output, signal } from '@angular/core';
+import { AfterContentInit, Component, input, output, signal } from '@angular/core';
 import { Extra } from '../../../shared/data-access/entities/Extra';
 import { CurrencyPipe, NgClass, NgOptimizedImage } from '@angular/common';
 import { environment } from '../../../../environments/environment';
@@ -10,9 +10,10 @@ import { ExtraDictionary } from '../../utils/ExtraDictionary';
   templateUrl: './extra-form-type-card.html',
   styleUrl: './extra-form-type-card.css',
 })
-export class ExtraFormTypeCard {
+export class ExtraFormTypeCard implements AfterContentInit {
   type = input<string>();
   extras = input<Extra[]>();
+  preselectedExtras = input<Extra[]>();
   extrasDict = output<ExtraDictionary>();
   errorState = output<boolean>();
   numberOfSelectedExtrasAcrossTypes = input<number>();
@@ -37,5 +38,14 @@ export class ExtraFormTypeCard {
 
   toggle() {
     this.isOpen.update((open) => !open);
+  }
+
+  ngAfterContentInit(): void {
+    if (this.preselectedExtras() !== undefined && this.preselectedExtras()!.length > 0) {
+      for (const extra of this.preselectedExtras()!) {
+        this.select(extra);
+      }
+    }
+    console.log('effectsrunsdeep');
   }
 }

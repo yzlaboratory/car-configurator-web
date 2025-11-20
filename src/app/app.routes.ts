@@ -7,4 +7,9 @@ export const routes: Routes = [
     component: Configurator,
     title: '',
   },
+  {
+    path: ':configId',
+    component: Configurator,
+    title: '',
+  },
 ];
