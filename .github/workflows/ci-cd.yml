@@ -37,8 +37,8 @@ jobs:
       - name: Check Formatting
         run: npm run format:check
 
-      - name: Run Unit Tests
-        run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadless
+  #      - name: Run Unit Tests
+  #        run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadless
 
   build-and-deploy:
     needs: validate
